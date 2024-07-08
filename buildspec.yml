@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+  pre_build:
+    commands:
+      - export ECR_PREFIX=965412407087.dkr.ecr.ap-south-1.amazonaws.com  
+      - export PROJECT_NAME=node-app-repo
+      - export ECR_REPO_NAME=node-app-repo
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - echo ap-south-1
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $ECR_PREFIX
+
